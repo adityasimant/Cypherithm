@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cypherinth.AESUtils;
+import com.example.cypherinth.BlowfishUtils;
 import com.example.cypherinth.Cypherithm;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String input = e1.getText().toString();
+                tv1.setText("");
+                String temp;
                 switch (i){
 
                     case 0:
@@ -51,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         l1.setVisibility(View.VISIBLE);
                         l2.setVisibility(View.VISIBLE);
                         String key = "ThisIsASecretKey";
-                        String input = e1.getText().toString();
-                        tv1.setText("");
-                        String temp;
+
                         if (input != ""){
                             try {
                                 String encrypted = AESUtils.encrypt(MainActivity.this,
@@ -69,7 +72,22 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
                     case 2:
-                        Toast.makeText(MainActivity.this, "2nd position", Toast.LENGTH_SHORT).show();
+                        l1.setVisibility(View.VISIBLE);
+                        l2.setVisibility(View.VISIBLE);
+                        String password = "ThisIsAPassword";
+                        if (input != ""){
+                            try {
+                                String encrypted = BlowfishUtils.encrypt(MainActivity.this,
+                                        input,password);
+                                tv1.setText(encrypted);
+                                String decrypted = BlowfishUtils.decrypt(MainActivity.this,
+                                        encrypted,password);
+                                tv2.setText(decrypted);
+
+                            } catch (Exception e) {
+                                Toast.makeText(MainActivity.this, "Exception occured", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     break;
 
                 }
