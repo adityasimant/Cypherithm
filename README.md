@@ -52,7 +52,7 @@ String encryptedText = TripleDESUtils.encrypt(context,"Hello, world!", key);
 String decryptedText = TripleDESUtils.decrypt(context,encryptedText, key);
 
 ```
-You can download out [demo apk here](https://github.com/adityasimant/Cypherithm/releases/download/1.0.0/cypherithm.apk)
+You can download out [demo apk here](https://github.com/adityasimant/Cypherithm/releases/download/1.0.1/cypherithm.apk)
 ## Credits & Contact
 Cypherithm is developed and maintained by [Aditya Simant](https://github.com/adityasimant).
 For any inquiries or further information, please contact adityasimant88@gmail.com.
