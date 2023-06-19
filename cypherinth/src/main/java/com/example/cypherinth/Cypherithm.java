@@ -10,4 +10,8 @@ public class Cypherithm {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
+    public static String add(String input){
+        return input+"appended";
+    }
+
 }
