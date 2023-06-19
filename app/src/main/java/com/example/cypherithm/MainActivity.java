@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.cypherinth.AESUtils;
 import com.example.cypherinth.BlowfishUtils;
 import com.example.cypherinth.Cypherithm;
+import com.example.cypherinth.TripleDESUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner;
 
     LinearLayout l1,l2;
-    String [] algorithm = {"none","AES", "BlowFish"};
+    String [] algorithm = {"none","AES", "BlowFish","TripleDES"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +90,23 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     break;
+                    case 3:
+                        l1.setVisibility(View.VISIBLE);
+                        l2.setVisibility(View.VISIBLE);
+                        String key1 = "YourSecretKey";
+                        if (input != ""){
+                            try {
+                                String encrypted = TripleDESUtils.encrypt(MainActivity.this,input, key1);
+                                tv1.setText(encrypted);
+                                String decrypted = TripleDESUtils.decrypt(MainActivity.this, encrypted, key1);
+                                tv2.setText(decrypted);
+
+                            } catch (Exception e) {
+                                Toast.makeText(MainActivity.this, "Exception occured", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        break;
+
 
                 }
             }
